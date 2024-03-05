@@ -25,7 +25,7 @@ RSpec.describe User, type: :model do
       it 'emailには@を含めてください' do
         @user.email = 'test.example.com'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Email には@を含めてください')
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
       it 'passwordが6文字以下では登録できない' do
         @user.password = '00000'
