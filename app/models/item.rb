@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
  belongs_to :user
+ has_one_attached :image
 
  validates :name, presence: { message: '商品名を入力してください' }
  validates :description, presence: { message: '商品の説明を入力してください' }
