@@ -63,14 +63,14 @@ RSpec.describe Item, type: :model do
 
       it '価格が¥300より低い場合は出品できない' do
         @item.price = 299
-        @item.errors.clear   
+        @item.errors.clear
         @item.valid?
         expect(@item.errors.full_messages).to include('Price 価格は300円から9,999,999円までの範囲で設定してください')
       end
-      
+
       it '価格が¥9,999,999より高い場合は出品できない' do
         @item.price = 10_000_000
-        @item.errors.clear   
+        @item.errors.clear
         @item.valid?
         expect(@item.errors.full_messages).to include('Price 価格は300円から9,999,999円までの範囲で設定してください')
       end
@@ -81,7 +81,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors[:price]).to include('is not a number')
       end
 
-        it 'userが紐付いていないと保存できない' do
+      it 'userが紐付いていないと保存できない' do
         @item.user = nil
         @item.valid?
         expect(@item.errors.full_messages).to include('User must exist')
