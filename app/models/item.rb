@@ -17,10 +17,12 @@ class Item < ApplicationRecord
   validates :prefecture_id,    presence: true, numericality: { other_than: 1, message: '発送元の地域を入力してください' }
   validates :shipping_day_id,  presence: true, numericality: { other_than: 1, message: '発送までの日数を入力してください' }
   validates :price, presence: { message: '金額を入力してください' },
-                    numericality: {
-                      only_integer: true,
-                      greater_than_or_equal_to: 300,
-                      less_than_or_equal_to: 9_999_999,
-                      message: '価格は300円から9,999,999円までの範囲で設定してください'
-                    }
+  numericality: {
+    only_integer: true,
+    greater_than_or_equal_to: 300,
+    less_than_or_equal_to: 9_999_999,
+    message: '価格は300円から9,999,999円までの範囲で設定してください'
+  }
+  validates :price, numericality: { only_integer: true }
+
 end
