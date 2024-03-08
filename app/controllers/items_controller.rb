@@ -13,7 +13,6 @@ class ItemsController < ApplicationController
     if @item.save # 該当のインスタンスを保存
       redirect_to '/'
     else
-      puts @item.errors.full_messages
       render :new, status: :unprocessable_entity
     end
   end

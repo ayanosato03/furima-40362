@@ -8,17 +8,15 @@ RSpec.describe Item, type: :model do
   describe '商品出品' do
     context '商品出品がうまくいくとき' do
       it '必要な情報が全て存在すれば出品できる' do
-        item = FactoryBot.build(:item)
         expect(@item).to be_valid
       end
     end
 
     context '商品出品がうまくいかないとき' do
       it '商品画像が存在しない場合出品できない' do
-        item = FactoryBot.build(:item)
-        item.image = nil
-        item.valid?
-        expect(item.errors.full_messages).to include('Image 商品画像を選択してください')
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Image 商品画像を選択してください')
       end
       it '商品名が存在しない場合は出品できない' do
         @item.name = nil
