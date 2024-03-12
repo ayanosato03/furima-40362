@@ -7,7 +7,6 @@ class OrderAddress
   validates :prefecture_id, presence: true, numericality: { other_than: 1, message: '都道府県を入力してください' }
   validates :municipalities, presence: { message: '市区町村を入力してください' }
   validates :street_address, presence: { message: '番地を入力してください' }
-  validates :building_name
   validates :phone_number, format: { with: /\A\d{10,11}\z/, message: '電話番号は10桁以上11桁以内の半角数値で入力してください' }
   validates :user_id
   validates :item_id
