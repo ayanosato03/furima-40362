@@ -1,7 +1,9 @@
 class OrderAddress
   include ActiveModel::Model
   attr_accessor :post_code, :prefecture_id, :municipalities, :street_address, :building_name, :phone_number, :user_id,:item_id
- 
+  attr_accessor :token
+  validates :token, presence: true
+
  with_options presence: true do
   validates :post_code, format: { with: /\A\d{3}-\d{4}\z/, message: '郵便番号は3桁-4桁の形式で入力してください' }
   validates :prefecture_id, presence: true, numericality: { other_than: 1, message: '都道府県を入力してください' }
@@ -14,7 +16,7 @@ class OrderAddress
 
  def save
   order = Order.create(item_id: item_id, user_id: user_id)
-  Address.create(post_code: post_code, prefecture_id: prefecture_id, municipalities: municipalities, street_address: street_address, building_name: building_name, phone_number:phone_number, order_id: order.id)
+  address =Address.create(post_code: post_code, prefecture_id: prefecture_id, municipalities: municipalities, street_address: street_address, building_name: building_name, phone_number:phone_number, order_id: order.id)
   order.address = address
 end
 
