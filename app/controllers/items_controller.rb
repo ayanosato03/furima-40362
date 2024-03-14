@@ -11,8 +11,8 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = current_user.items.build(item_params) # 新規のPrototypeインスタンスを作成
-    if @item.save # 該当のインスタンスを保存
+    @item = current_user.items.build(item_params)
+    if @item.save
       redirect_to '/'
     else
       render :new, status: :unprocessable_entity
@@ -23,7 +23,11 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    redirect_to root_path unless current_user.id == @item.user.id
+    @item = Item.find(params[:id])
+    if current_user.id == @item.user_id && @item.order.blank?
+    else
+      redirect_to root_path
+    end
   end
 
   def update
