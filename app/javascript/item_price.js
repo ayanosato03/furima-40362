@@ -1,3 +1,4 @@
+
 function item_price (){
 const priceInput = document.getElementById("item-price");
 priceInput.addEventListener("input", () => {
@@ -10,7 +11,8 @@ priceInput.addEventListener("input", () => {
   const profit = price - fee;
 
   addTaxDom.innerHTML =  `販売手数料：${fee}`;
-  profitDom.innerHTML = `利益：${profit}円`;
+  profitDom.innerHTML = `利益：${profit}`;
 })
 };
 window.addEventListener('turbo:load', item_price);
+window.addEventListener('turbo:render', item_price);
