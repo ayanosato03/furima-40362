@@ -1,6 +1,7 @@
 class OrderAddress
   include ActiveModel::Model
-  attr_accessor :post_code, :prefecture_id, :municipalities, :street_address, :building_name, :phone_number, :user_id, :item_id, :token
+  attr_accessor :post_code, :prefecture_id, :municipalities, :street_address, :building_name, :phone_number, :user_id, :item_id,
+                :token
 
   with_options presence: true do
     validates :post_code, format: { with: /\A\d{3}-\d{4}\z/, message: '郵便番号は3桁-4桁の形式で入力してください' }
